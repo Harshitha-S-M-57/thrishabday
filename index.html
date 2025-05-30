@@ -7,44 +7,53 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: "Comic Sans MS", cursive, sans-serif;
-      background: linear-gradient(135deg, #fff0f5, #ffe4e1);
-      overflow-x: hidden;
+      background: url('background-hearts.png') repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #333;
     }
 
     h1 {
       font-size: 2.4em;
       color: #ff69b4;
       text-align: center;
-      margin: 30px 20px 10px;
-    }
-
-    p {
-      font-size: 1.2em;
-      color: #333;
-      line-height: 1.6;
-      text-align: center;
+      margin-top: 30px;
       padding: 0 20px;
     }
 
-    .slider {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      gap: 10px;
-      padding: 20px 0;
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      text-align: center;
+      margin: 20px;
+      padding: 0 10px;
+      color: #444;
     }
 
-    .slider img {
-      flex: 0 0 100%;
-      scroll-snap-align: center;
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .photo-card {
+      width: 90%;
+      max-width: 400px;
+      border: 3px solid #ffc0cb;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      background-color: #fff0f5;
+    }
+
+    .photo-card img {
       width: 100%;
-      height: 100vh;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      height: auto;
+      display: block;
+      object-fit: contain;
     }
 
     .footer {
@@ -54,14 +63,7 @@
       background-color: #fff0f5;
       text-align: center;
       border-top: 1px solid #ffc0cb;
-    }
-
-    canvas {
-      position: fixed;
-      pointer-events: none;
-      top: 0;
-      left: 0;
-      z-index: 999;
+      margin-top: 40px;
     }
 
     audio {
@@ -71,45 +73,51 @@
 </head>
 <body>
 
-  <canvas id="confetti"></canvas>
-
   <h1>Happiiee Birthday Thrishaa 💗💖</h1>
 
-  <!-- Solo Pics Slider -->
-  <div class="slider">
-    <img src="solo1.jpg" alt="Thrisha cute" />
-    <img src="solo2.jpg" alt="Thrisha smiling" />
-    <img src="solo3.jpg" alt="Candid Thrisha" />
-    <img src="solo4.jpg" alt="Funny Thrisha" />
-    <img src="solo5.jpg" alt="Goofy Thrisha" />
-    <img src="solo6.jpg" alt="Cute-funny face" />
+  <!-- Solo Pictures -->
+  <div class="gallery">
+    <div class="photo-card"><img src="solo1.jpg" alt="Thrisha 1"></div>
+    <div class="photo-card"><img src="solo2.jpg" alt="Thrisha 2"></div>
+    <div class="photo-card"><img src="solo3.jpg" alt="Thrisha 3"></div>
+    <div class="photo-card"><img src="solo4.jpg" alt="Funny Thrisha 1"></div>
+    <div class="photo-card"><img src="solo5.jpg" alt="Funny Thrisha 2"></div>
+    <div class="photo-card"><img src="solo6.jpg" alt="Funny Thrisha 3"></div>
   </div>
 
-  <!-- Message -->
+  <!-- Birthday Message -->
   <p>
-    Hope your day’s as beautiful and chaotic as you are 😄<br/>
-    Stay blessed, stay wild, and keep being the sunshine in everyone’s life ☀️💗<br/>
-    Wishing you endless happiness, love & the silliest selfies 🥰📸<br/><br/>
-    From wild photos to calm rants, you’ve been everything — my Instagram manager, my chaos buddy, and my forever person 😂💼💝<br/>
-    And even when we go days without talking, we always pick up right where we left off — like nothing ever changed 🫂💗<br/>
+    Hope your day’s as beautiful and chaotic as you are 😄<br>
+    Stay blessed, stay wild, and keep being the sunshine in everyone’s life ☀️💗<br>
+    Wishing you endless happiness, love & the silliest selfies 🥰📸
+  </p>
+
+  <p>
+    From wild photos to calm rants, you’ve been everything —<br>
+    my Instagram manager, my chaos buddy, and my forever person 😂💼💝
+  </p>
+
+  <p>
+    And even when we go days without talking,<br>
+    we always pick up right where we left off — like nothing ever changed 🫂💗<br>
     Love you always, maga 💖
   </p>
 
-  <!-- Duo Pics Slider -->
-  <div class="slider">
-    <img src="duo1.jpg" alt="Us 1" />
-    <img src="duo2.jpg" alt="Us 2" />
-    <img src="duo3.jpg" alt="Us 3" />
-    <img src="duo4.jpg" alt="Us 4" />
-    <img src="duo5.jpg" alt="Us 5" />
-    <img src="duo6.jpg" alt="Us 6" />
-    <img src="duo7.jpg" alt="Us 7" />
-    <img src="duo8.jpg" alt="Us 8" />
+  <!-- Duo Pictures -->
+  <div class="gallery">
+    <div class="photo-card"><img src="duo1.jpg" alt="Duo 1"></div>
+    <div class="photo-card"><img src="duo2.jpg" alt="Duo 2"></div>
+    <div class="photo-card"><img src="duo3.jpg" alt="Duo 3"></div>
+    <div class="photo-card"><img src="duo4.jpg" alt="Duo 4"></div>
+    <div class="photo-card"><img src="duo5.jpg" alt="Duo 5"></div>
+    <div class="photo-card"><img src="duo6.jpg" alt="Duo 6"></div>
+    <div class="photo-card"><img src="duo7.jpg" alt="Duo 7"></div>
+    <div class="photo-card"><img src="duo8.jpg" alt="Duo 8"></div>
   </div>
 
   <!-- Music -->
   <audio id="bg-music" autoplay loop>
-    <source src="bdaymusic.mp3" type="audio/mpeg">
+    <source src="bg-music.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
@@ -117,75 +125,13 @@
     Made with 💖 by Harshitha
   </div>
 
-  <!-- Confetti (Hearts) Script -->
+  <!-- Auto-play fix for mobile -->
   <script>
-    // For autoplay on mobile
     window.addEventListener('click', () => {
       const music = document.getElementById('bg-music');
       if (music.paused) music.play();
     });
-
-    const canvas = document.getElementById("confetti");
-    const ctx = canvas.getContext("2d");
-    let hearts = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
-
-    function createHeart() {
-      return {
-        x: Math.random() * canvas.width,
-        y: -20,
-        size: Math.random() * 10 + 10,
-        speed: Math.random() * 2 + 1,
-        rotation: Math.random() * 360
-      };
-    }
-
-    function drawHeart(x, y, size, rotation) {
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(rotation * Math.PI / 180);
-      ctx.scale(size / 30, size / 30);
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.bezierCurveTo(0, -3, -5, -15, -15, -15);
-      ctx.bezierCurveTo(-35, -15, -35, 10, -35, 10);
-      ctx.bezierCurveTo(-35, 25, -20, 40, 0, 50);
-      ctx.bezierCurveTo(20, 40, 35, 25, 35, 10);
-      ctx.bezierCurveTo(35, 10, 35, -15, 15, -15);
-      ctx.bezierCurveTo(5, -15, 0, -3, 0, 0);
-      ctx.fillStyle = "#ff69b4";
-      ctx.fill();
-      ctx.restore();
-    }
-
-    let frame = 0;
-    const maxFrames = 250;
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      hearts.forEach((heart, i) => {
-        heart.y += heart.speed;
-        heart.rotation += 1;
-        drawHeart(heart.x, heart.y, heart.size, heart.rotation);
-        if (heart.y > canvas.height) hearts.splice(i, 1);
-      });
-
-      if (frame < maxFrames) {
-        hearts.push(createHeart());
-        frame++;
-      }
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
   </script>
+
 </body>
 </html>

@@ -7,27 +7,26 @@
   <style>
     body {
       margin: 0;
+      padding: 0;
       font-family: "Comic Sans MS", cursive, sans-serif;
-      background: url('background-hearts.png') repeat;
-      background-size: cover;
-      background-attachment: fixed;
+      background: url('confetti-bg.png') repeat;
+      background-color: #fffafc;
       color: #333;
     }
 
     h1 {
-      font-size: 2.4em;
-      color: #ff69b4;
+      font-size: 2.5em;
       text-align: center;
+      color: #ff69b4;
       margin-top: 30px;
-      padding: 0 20px;
+      padding: 0 15px;
     }
 
     p {
       font-size: 1.1em;
-      line-height: 1.6;
       text-align: center;
-      margin: 20px;
-      padding: 0 10px;
+      margin: 10px 20px;
+      line-height: 1.6;
       color: #444;
     }
 
@@ -35,101 +34,106 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
-      padding: 20px;
+      gap: 30px;
+      padding: 30px 10px;
     }
 
     .photo-card {
       width: 90%;
-      max-width: 400px;
-      border: 3px solid #ffc0cb;
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      overflow: hidden;
-      background-color: #fff0f5;
+      max-width: 500px;
+      padding: 10px;
+      background: #fff0f5;
+      border: 6px solid #ffb6c1;
+      border-radius: 25px;
+      box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .photo-card:hover {
+      transform: scale(1.02);
     }
 
     .photo-card img {
       width: 100%;
       height: auto;
       display: block;
+      border-radius: 15px;
       object-fit: contain;
     }
 
     .footer {
+      text-align: center;
       padding: 20px;
       font-size: 1em;
-      color: #888;
       background-color: #fff0f5;
-      text-align: center;
       border-top: 1px solid #ffc0cb;
-      margin-top: 40px;
+      color: #888;
     }
 
     audio {
       display: none;
     }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 2em;
+      }
+      p {
+        font-size: 1em;
+        padding: 0 10px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <h1>Happiiee Birthday Thrishaa 💗💖</h1>
+  <h1>Happiiee Birthday Thrishaa 💖💗</h1>
 
-  <!-- Solo Pictures -->
+  <!-- Solo Pictures (includes funny ones) -->
   <div class="gallery">
-    <div class="photo-card"><img src="solo1.jpg" alt="Thrisha 1"></div>
-    <div class="photo-card"><img src="solo2.jpg" alt="Thrisha 2"></div>
-    <div class="photo-card"><img src="solo3.jpg" alt="Thrisha 3"></div>
+    <div class="photo-card"><img src="solo1.jpg" alt="Thrisha Pic 1"></div>
+    <div class="photo-card"><img src="solo2.jpg" alt="Thrisha Pic 2"></div>
+    <div class="photo-card"><img src="solo3.jpg" alt="Thrisha Pic 3"></div>
     <div class="photo-card"><img src="solo4.jpg" alt="Funny Thrisha 1"></div>
     <div class="photo-card"><img src="solo5.jpg" alt="Funny Thrisha 2"></div>
     <div class="photo-card"><img src="solo6.jpg" alt="Funny Thrisha 3"></div>
   </div>
 
-  <!-- Birthday Message -->
-  <p>
-    Hope your day’s as beautiful and chaotic as you are 😄<br>
-    Stay blessed, stay wild, and keep being the sunshine in everyone’s life ☀️💗<br>
-    Wishing you endless happiness, love & the silliest selfies 🥰📸
-  </p>
-
-  <p>
-    From wild photos to calm rants, you’ve been everything —<br>
-    my Instagram manager, my chaos buddy, and my forever person 😂💼💝
-  </p>
-
-  <p>
-    And even when we go days without talking,<br>
-    we always pick up right where we left off — like nothing ever changed 🫂💗<br>
-    Love you always, maga 💖
-  </p>
+  <!-- Messages -->
+  <p>Hope your day’s as beautiful and chaotic as you 😄</p>
+  <p>Stay blessed, stay wild, and keep being the sunshine you are ☀️💝</p>
+  <p>Wishing you loads of happiness, love & silly selfies 🥰📸</p>
+  <p>From wild selfies to calm rants, you’ve been everything — my personal Instagram manager to my chaos buddy 😄💼</p>
+  <p>No matter the gap between our chats, it always feels like no time passed. That’s real, and that’s us 💗🫂</p>
 
   <!-- Duo Pictures -->
   <div class="gallery">
-    <div class="photo-card"><img src="duo1.jpg" alt="Duo 1"></div>
-    <div class="photo-card"><img src="duo2.jpg" alt="Duo 2"></div>
-    <div class="photo-card"><img src="duo3.jpg" alt="Duo 3"></div>
-    <div class="photo-card"><img src="duo4.jpg" alt="Duo 4"></div>
-    <div class="photo-card"><img src="duo5.jpg" alt="Duo 5"></div>
-    <div class="photo-card"><img src="duo6.jpg" alt="Duo 6"></div>
-    <div class="photo-card"><img src="duo7.jpg" alt="Duo 7"></div>
-    <div class="photo-card"><img src="duo8.jpg" alt="Duo 8"></div>
+    <div class="photo-card"><img src="duo1.jpg" alt="Duo Pic 1"></div>
+    <div class="photo-card"><img src="duo2.jpg" alt="Duo Pic 2"></div>
+    <div class="photo-card"><img src="duo3.jpg" alt="Duo Pic 3"></div>
+    <div class="photo-card"><img src="duo4.jpg" alt="Duo Pic 4"></div>
+    <div class="photo-card"><img src="duo5.jpg" alt="Duo Pic 5"></div>
+    <div class="photo-card"><img src="duo6.jpg" alt="Duo Pic 6"></div>
+    <div class="photo-card"><img src="duo7.jpg" alt="Duo Pic 7"></div>
+    <div class="photo-card"><img src="duo8.jpg" alt="Duo Pic 8"></div>
   </div>
 
-  <!-- Music -->
-  <audio id="bg-music" autoplay loop>
-    <source src="bg-music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+  <!-- Background Music -->
+  <audio id="bg-music" autoplay loop muted></audio>
 
   <div class="footer">
     Made with 💖 by Harshitha
   </div>
 
-  <!-- Auto-play fix for mobile -->
+  <!-- Script to autoplay music -->
   <script>
-    window.addEventListener('click', () => {
-      const music = document.getElementById('bg-music');
-      if (music.paused) music.play();
+    const music = document.getElementById('bg-music');
+    music.src = 'bg-music.mp3';
+    music.play().catch(() => {
+      document.body.addEventListener('click', () => {
+        music.muted = false;
+        music.play();
+      }, { once: true });
     });
   </script>
 

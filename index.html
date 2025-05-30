@@ -2,18 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Happy Birthday Thrisha 💖</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: "Comic Sans MS", cursive, sans-serif;
-      background: url('confetti-bg.png') repeat;
-      background-size: 150px;
       background-color: #fffafc;
       color: #333;
       overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Canvas full-screen behind everything */
+    #confetti-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none; /* So clicks go through */
+      z-index: 0;
+    }
+
+    /* Content on top */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -37,13 +53,12 @@
       display: flex;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
-      padding: 30px 0;
       gap: 20px;
-      padding-left: 10px;
+      padding: 30px 10px;
     }
 
     .slide {
-      flex: 0 0 80%;
+      flex: 0 0 75%;
       scroll-snap-align: center;
       background: #fff0f5;
       border: 6px solid #ffb6c1;
@@ -51,17 +66,20 @@
       box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
       padding: 10px;
       display: flex;
-      align-items: center;      /* Center image vertically */
-      justify-content: center;  /* Center image horizontally */
+      align-items: center;
+      justify-content: center;
       height: 70vh;
+      transition: transform 0.3s ease;
     }
 
     .slide img {
       max-height: 100%;
       max-width: 100%;
       object-fit: contain;
-      object-position: center center;  /* Ensure image sits centered in frame */
+      object-position: center center;
       border-radius: 15px;
+      user-select: none;
+      pointer-events: none;
     }
 
     .footer {
@@ -89,58 +107,186 @@
         flex: 0 0 85%;
       }
     }
+
+    /* Popup overlay styles */
+    #popup {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 192, 203, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+      color: #ff1493;
+      font-size: 1.5em;
+      text-align: center;
+      padding: 20px;
+      user-select: none;
+      cursor: pointer;
+    }
+    #popup p {
+      margin-bottom: 20px;
+    }
+    #popup:hover {
+      background: rgba(255, 105, 180, 0.95);
+      color: white;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Happiiee Birthday Thrishaa 💖💗</h1>
+  <!-- Canvas for confetti -->
+  <canvas id="confetti-canvas"></canvas>
 
-  <!-- Solo Picture Slider -->
-  <div class="slider-container">
-    <div class="slide"><img src="solo1.jpg" alt="Thrisha 1"></div>
-    <div class="slide"><img src="solo2.jpg" alt="Thrisha 2"></div>
-    <div class="slide"><img src="solo3.jpg" alt="Thrisha 3"></div>
-    <div class="slide"><img src="solo4.jpg" alt="Funny Thrisha 1"></div>
-    <div class="slide"><img src="solo5.jpg" alt="Funny Thrisha 2"></div>
-    <div class="slide"><img src="solo6.jpg" alt="Funny Thrisha 3"></div>
+  <!-- Popup overlay to start music -->
+  <div id="popup">
+    <p>Hey Thrisha! Tap anywhere to start the birthday vibes 🎉🎶</p>
+    <small>(Music will start after you tap)</small>
   </div>
 
-  <!-- Messages -->
-  <p>Hope your day’s as beautiful and chaotic as you 😄</p>
-  <p>Stay blessed, stay wild, and keep being the sunshine you are ☀️💝</p>
-  <p>Wishing you loads of happiness, love & silly selfies 🥰📸</p>
-  <p>From wild selfies to calm rants, you’ve been everything — my personal Instagram manager to my chaos buddy 😄💼</p>
-  <p>No matter the gap between our chats, it always feels like no time passed. That’s real, and that’s us 💗🫂</p>
+  <div class="content-wrapper">
 
-  <!-- Duo Picture Slider -->
-  <div class="slider-container">
-    <div class="slide"><img src="duo1.jpg" alt="Duo 1"></div>
-    <div class="slide"><img src="duo2.jpg" alt="Duo 2"></div>
-    <div class="slide"><img src="duo3.jpg" alt="Duo 3"></div>
-    <div class="slide"><img src="duo4.jpg" alt="Duo 4"></div>
-    <div class="slide"><img src="duo5.jpg" alt="Duo 5"></div>
-    <div class="slide"><img src="duo6.jpg" alt="Duo 6"></div>
-    <div class="slide"><img src="duo7.jpg" alt="Duo 7"></div>
-    <div class="slide"><img src="duo8.jpg" alt="Duo 8"></div>
+    <h1>Happiiee Birthday Thrishaa 💖💗</h1>
+
+    <!-- Solo Picture Slider -->
+    <div class="slider-container">
+      <div class="slide"><img src="solo1.jpg" alt="Thrisha 1"></div>
+      <div class="slide"><img src="solo2.jpg" alt="Thrisha 2"></div>
+      <div class="slide"><img src="solo3.jpg" alt="Thrisha 3"></div>
+      <div class="slide"><img src="solo4.jpg" alt="Funny Thrisha 1"></div>
+      <div class="slide"><img src="solo5.jpg" alt="Funny Thrisha 2"></div>
+      <div class="slide"><img src="solo6.jpg" alt="Funny Thrisha 3"></div>
+    </div>
+
+    <!-- Messages -->
+    <p>Hope your day’s as beautiful and chaotic as you 😄</p>
+    <p>Stay blessed, stay wild, and keep being the sunshine you are ☀️💝</p>
+    <p>Wishing you loads of happiness, love & silly selfies 🥰📸</p>
+    <p>From wild selfies to calm rants, you’ve been everything — my personal Instagram manager to my chaos buddy 😄💼</p>
+    <p>No matter the gap between our chats, it always feels like no time passed. That’s real, and that’s us 💗🫂</p>
+
+    <!-- Duo Picture Slider -->
+    <div class="slider-container">
+      <div class="slide"><img src="duo1.jpg" alt="Duo 1"></div>
+      <div class="slide"><img src="duo2.jpg" alt="Duo 2"></div>
+      <div class="slide"><img src="duo3.jpg" alt="Duo 3"></div>
+      <div class="slide"><img src="duo4.jpg" alt="Duo 4"></div>
+      <div class="slide"><img src="duo5.jpg" alt="Duo 5"></div>
+      <div class="slide"><img src="duo6.jpg" alt="Duo 6"></div>
+      <div class="slide"><img src="duo7.jpg" alt="Duo 7"></div>
+      <div class="slide"><img src="duo8.jpg" alt="Duo 8"></div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop src="bg-music.mp3"></audio>
+
+    <div class="footer">
+      Made with 💖 by Harshitha
+    </div>
+
   </div>
 
-  <!-- Background Music -->
-  <audio id="bg-music" autoplay loop muted></audio>
-
-  <div class="footer">
-    Made with 💖 by Harshitha
-  </div>
-
-  <!-- Music Play Script -->
   <script>
+    const popup = document.getElementById('popup');
     const music = document.getElementById('bg-music');
-    music.src = 'bg-music.mp3';
-    music.play().catch(() => {
-      document.body.addEventListener('click', () => {
-        music.muted = false;
-        music.play();
-      }, { once: true });
+
+    popup.addEventListener('click', () => {
+      music.play().catch(() => {
+        alert("Please tap play on the music player.");
+      });
+      popup.style.display = 'none';
     });
+
+    // Falling hearts confetti animation
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    function resize() {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W;
+      canvas.height = H;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Heart shape drawing function
+    function drawHeart(ctx, x, y, size, color) {
+      ctx.save();
+      ctx.beginPath();
+      const topCurveHeight = size * 0.3;
+      ctx.moveTo(x, y + topCurveHeight);
+      // Left side
+      ctx.bezierCurveTo(
+        x, y,
+        x - size / 2, y,
+        x - size / 2, y + topCurveHeight
+      );
+      // Bottom tip
+      ctx.bezierCurveTo(
+        x - size / 2, y + (size + topCurveHeight) / 2,
+        x, y + (size + topCurveHeight) / 1.4,
+        x, y + size
+      );
+      // Right side
+      ctx.bezierCurveTo(
+        x, y + (size + topCurveHeight) / 1.4,
+        x + size / 2, y + (size + topCurveHeight) / 2,
+        x + size / 2, y + topCurveHeight
+      );
+      ctx.bezierCurveTo(
+        x + size / 2, y,
+        x, y,
+        x, y + topCurveHeight
+      );
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // Heart confetti particles
+    const hearts = [];
+    const heartCount = 40;
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    for(let i = 0; i < heartCount; i++) {
+      hearts.push({
+        x: random(0, W),
+        y: random(0, H),
+        size: random(10, 18),
+        speed: random(0.5, 1.5),
+        sway: random(0.5, 1.5),
+        swayDir: Math.random() > 0.5 ? 1 : -1,
+        swayOffset: random(0, 2 * Math.PI),
+        color: `rgba(255,${Math.floor(random(100,180))},${Math.floor(random(150,220))},0.7)`
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, W, H);
+
+      hearts.forEach(h => {
+        h.y += h.speed;
+        h.x += Math.sin(h.swayOffset) * h.swayDir * 0.5;
+        h.swayOffset += 0.02;
+
+        if (h.y > H + h.size) {
+          h.y = -h.size;
+          h.x = random(0, W);
+        }
+        drawHeart(ctx, h.x, h.y, h.size, h.color);
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   </script>
 
 </body>

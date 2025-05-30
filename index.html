@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Thrisha 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #ff69b4;
+      margin-top: 30px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 20px auto;
+      max-width: 90%;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding: 15px;
+      margin: 20px 0;
+    }
+
+    .gallery img {
+      height: 280px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      flex-shrink: 0;
+    }
+
+    audio {
+      margin-top: 20px;
+    }
+
+    canvas {
+      position: fixed;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+      z-index: 999;
+    }
+
+    .footer {
+      padding: 20px;
+      font-size: 1em;
+      color: #888;
+      background-color: #fff0f5;
+      text-align: center;
+      margin-top: 40px;
+      border-top: 1px solid #ffc0cb;
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      .gallery img {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="confetti"></canvas>
+
+  <h1>Happiiee Birthday Thrishaa 💗💗</h1>
+
+  <!-- All Solo Pics (3 cute + 3 funny) -->
+  <div class="gallery">
+    <img src="solo1.jpg" alt="Thrisha looking cute" />
+    <img src="solo2.jpg" alt="Thrisha smiling" />
+    <img src="solo3.jpg" alt="Thrisha candid" />
+    <img src="solo4.jpg" alt="Funny Thrisha" />
+    <img src="solo5.jpg" alt="Goofy Thrisha" />
+    <img src="solo6.jpg" alt="Cute-funny face" />
+  </div>
+
+  <!-- Message -->
+  <p>
+    Hope your day’s as beautiful and chaotic as you are 😄<br/>
+    Stay blessed, stay wild, and keep being the sunshine in everyone’s life ☀️💗<br/>
+    Wishing you endless happiness, love & the silliest selfies 🥰📸<br/><br/>
+
+    From wild photos to calm rants, you’ve been everything — my Instagram manager, my chaos buddy, and my forever person 😂💼💝<br/>
+    And even when we go days without talking, we always pick up right where we left off — like nothing ever changed 🫂💗<br/>
+    Love you always, maga 💖
+  </p>
+
+  <!-- Duo Pics -->
+  <div class="gallery">
+    <img src="duo1.jpg" alt="Us together" />
+    <img src="duo2.jpg" alt="Us smiling" />
+    <img src="duo3.jpg" alt="Us laughing" />
+    <img src="duo4.jpg" alt="Candid shot" />
+    <img src="duo5.jpg" alt="Hanging out" />
+    <img src="duo6.jpg" alt="Trip moment" />
+    <img src="duo7.jpg" alt="Goofy selfie" />
+    <img src="duo8.jpg" alt="Cute pose" />
+  </div>
+
+  <!-- Music -->
+  <audio id="bg-music" autoplay loop>
+    <source src="bg-music.mp3" type="audio/mpeg" />
+    Your browser does not support the audio tag.
+  </audio>
+
+  <!-- Footer -->
+  <div class="footer">
+    Made with 💖 by Harshitha
+  </div>
+
+  <!-- Confetti Script -->
+  <script>
+    // Try to autoplay on click (for mobile)
+    window.addEventListener('click', () => {
+      const music = document.getElementById('bg-music');
+      if (music.paused) music.play();
+    });
+
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let hearts = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function createHeart() {
+      return {
+        x: Math.random() * canvas.width,
+        y: -20,
+        size: Math.random() * 10 + 10,
+        speed: Math.random() * 2 + 1,
+        rotation: Math.random() * 360
+      };
+    }
+
+    function drawHeart(x, y, size, rotation) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation * Math.PI / 180);
+      ctx.scale(size / 30, size / 30);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(0, -3, -5, -15, -15, -15);
+      ctx.bezierCurveTo(-35, -15, -35, 10, -35, 10);
+      ctx.bezierCurveTo(-35, 25, -20, 40, 0, 50);
+      ctx.bezierCurveTo(20, 40, 35, 25, 35, 10);
+      ctx.bezierCurveTo(35, 10, 35, -15, 15, -15);
+      ctx.bezierCurveTo(5, -15, 0, -3, 0, 0);
+      ctx.fillStyle = "#ff69b4";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    let frame = 0;
+    const maxFrames = 300; // ~5 seconds of confetti
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      hearts.forEach((heart, index) => {
+        heart.y += heart.speed;
+        heart.rotation += 1;
+        drawHeart(heart.x, heart.y, heart.size, heart.rotation);
+        if (heart.y > canvas.height) hearts.splice(index, 1);
+      });
+
+      if (frame < maxFrames) {
+        hearts.push(createHeart());
+        frame++;
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+
+</body>
+</html>

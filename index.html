@@ -10,8 +10,10 @@
       padding: 0;
       font-family: "Comic Sans MS", cursive, sans-serif;
       background: url('confetti-bg.png') repeat;
+      background-size: 150px;
       background-color: #fffafc;
       color: #333;
+      overflow-x: hidden;
     }
 
     h1 {
@@ -30,30 +32,28 @@
       color: #444;
     }
 
-    .gallery {
+    .slider-container {
+      overflow-x: scroll;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      padding: 30px 10px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 30px 0;
+      gap: 10px;
     }
 
-    .photo-card {
-      width: 90%;
-      max-width: 500px;
-      padding: 10px;
+    .slide {
+      flex: 0 0 85%;
+      scroll-snap-align: center;
+      margin-left: 15px;
+      margin-right: 15px;
       background: #fff0f5;
       border: 6px solid #ffb6c1;
       border-radius: 25px;
       box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
-      transition: transform 0.3s ease;
+      padding: 10px;
     }
 
-    .photo-card:hover {
-      transform: scale(1.02);
-    }
-
-    .photo-card img {
+    .slide img {
       width: 100%;
       height: auto;
       display: block;
@@ -82,6 +82,9 @@
         font-size: 1em;
         padding: 0 10px;
       }
+      .slide {
+        flex: 0 0 90%;
+      }
     }
   </style>
 </head>
@@ -89,14 +92,14 @@
 
   <h1>Happiiee Birthday Thrishaa 💖💗</h1>
 
-  <!-- Solo Pictures (includes funny ones) -->
-  <div class="gallery">
-    <div class="photo-card"><img src="solo1.jpg" alt="Thrisha Pic 1"></div>
-    <div class="photo-card"><img src="solo2.jpg" alt="Thrisha Pic 2"></div>
-    <div class="photo-card"><img src="solo3.jpg" alt="Thrisha Pic 3"></div>
-    <div class="photo-card"><img src="solo4.jpg" alt="Funny Thrisha 1"></div>
-    <div class="photo-card"><img src="solo5.jpg" alt="Funny Thrisha 2"></div>
-    <div class="photo-card"><img src="solo6.jpg" alt="Funny Thrisha 3"></div>
+  <!-- Solo Picture Slider -->
+  <div class="slider-container">
+    <div class="slide"><img src="solo1.jpg" alt="Thrisha 1"></div>
+    <div class="slide"><img src="solo2.jpg" alt="Thrisha 2"></div>
+    <div class="slide"><img src="solo3.jpg" alt="Thrisha 3"></div>
+    <div class="slide"><img src="solo4.jpg" alt="Funny Thrisha 1"></div>
+    <div class="slide"><img src="solo5.jpg" alt="Funny Thrisha 2"></div>
+    <div class="slide"><img src="solo6.jpg" alt="Funny Thrisha 3"></div>
   </div>
 
   <!-- Messages -->
@@ -106,16 +109,16 @@
   <p>From wild selfies to calm rants, you’ve been everything — my personal Instagram manager to my chaos buddy 😄💼</p>
   <p>No matter the gap between our chats, it always feels like no time passed. That’s real, and that’s us 💗🫂</p>
 
-  <!-- Duo Pictures -->
-  <div class="gallery">
-    <div class="photo-card"><img src="duo1.jpg" alt="Duo Pic 1"></div>
-    <div class="photo-card"><img src="duo2.jpg" alt="Duo Pic 2"></div>
-    <div class="photo-card"><img src="duo3.jpg" alt="Duo Pic 3"></div>
-    <div class="photo-card"><img src="duo4.jpg" alt="Duo Pic 4"></div>
-    <div class="photo-card"><img src="duo5.jpg" alt="Duo Pic 5"></div>
-    <div class="photo-card"><img src="duo6.jpg" alt="Duo Pic 6"></div>
-    <div class="photo-card"><img src="duo7.jpg" alt="Duo Pic 7"></div>
-    <div class="photo-card"><img src="duo8.jpg" alt="Duo Pic 8"></div>
+  <!-- Duo Picture Slider -->
+  <div class="slider-container">
+    <div class="slide"><img src="duo1.jpg" alt="Duo 1"></div>
+    <div class="slide"><img src="duo2.jpg" alt="Duo 2"></div>
+    <div class="slide"><img src="duo3.jpg" alt="Duo 3"></div>
+    <div class="slide"><img src="duo4.jpg" alt="Duo 4"></div>
+    <div class="slide"><img src="duo5.jpg" alt="Duo 5"></div>
+    <div class="slide"><img src="duo6.jpg" alt="Duo 6"></div>
+    <div class="slide"><img src="duo7.jpg" alt="Duo 7"></div>
+    <div class="slide"><img src="duo8.jpg" alt="Duo 8"></div>
   </div>
 
   <!-- Background Music -->
@@ -125,7 +128,7 @@
     Made with 💖 by Harshitha
   </div>
 
-  <!-- Script to autoplay music -->
+  <!-- Autoplay Music -->
   <script>
     const music = document.getElementById('bg-music');
     music.src = 'bg-music.mp3';

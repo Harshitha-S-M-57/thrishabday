@@ -10,41 +10,50 @@
       padding: 0;
       font-family: "Comic Sans MS", cursive, sans-serif;
       background: linear-gradient(135deg, #fff0f5, #ffe4e1);
-      text-align: center;
       overflow-x: hidden;
     }
 
     h1 {
-      font-size: 2.5em;
+      font-size: 2.4em;
       color: #ff69b4;
-      margin-top: 30px;
+      text-align: center;
+      margin: 30px 20px 10px;
     }
 
     p {
       font-size: 1.2em;
-      margin: 20px auto;
-      max-width: 90%;
       color: #333;
       line-height: 1.6;
+      text-align: center;
+      padding: 0 20px;
     }
 
-    .gallery {
+    .slider {
       display: flex;
       overflow-x: auto;
-      gap: 15px;
-      padding: 15px;
-      margin: 20px 0;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 10px;
+      padding: 20px 0;
     }
 
-    .gallery img {
-      height: 280px;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      flex-shrink: 0;
+    .slider img {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
-    audio {
-      margin-top: 20px;
+    .footer {
+      padding: 20px;
+      font-size: 1em;
+      color: #888;
+      background-color: #fff0f5;
+      text-align: center;
+      border-top: 1px solid #ffc0cb;
     }
 
     canvas {
@@ -55,24 +64,8 @@
       z-index: 999;
     }
 
-    .footer {
-      padding: 20px;
-      font-size: 1em;
-      color: #888;
-      background-color: #fff0f5;
-      text-align: center;
-      margin-top: 40px;
-      border-top: 1px solid #ffc0cb;
-    }
-
-    @media screen and (max-width: 600px) {
-      h1 {
-        font-size: 2em;
-      }
-
-      .gallery img {
-        height: 220px;
-      }
+    audio {
+      display: none;
     }
   </style>
 </head>
@@ -80,13 +73,13 @@
 
   <canvas id="confetti"></canvas>
 
-  <h1>Happiiee Birthday Thrishaa 💗💗</h1>
+  <h1>Happiiee Birthday Thrishaa 💗💖</h1>
 
-  <!-- All Solo Pics (3 cute + 3 funny) -->
-  <div class="gallery">
-    <img src="solo1.jpg" alt="Thrisha looking cute" />
+  <!-- Solo Pics Slider -->
+  <div class="slider">
+    <img src="solo1.jpg" alt="Thrisha cute" />
     <img src="solo2.jpg" alt="Thrisha smiling" />
-    <img src="solo3.jpg" alt="Thrisha candid" />
+    <img src="solo3.jpg" alt="Candid Thrisha" />
     <img src="solo4.jpg" alt="Funny Thrisha" />
     <img src="solo5.jpg" alt="Goofy Thrisha" />
     <img src="solo6.jpg" alt="Cute-funny face" />
@@ -97,52 +90,51 @@
     Hope your day’s as beautiful and chaotic as you are 😄<br/>
     Stay blessed, stay wild, and keep being the sunshine in everyone’s life ☀️💗<br/>
     Wishing you endless happiness, love & the silliest selfies 🥰📸<br/><br/>
-
     From wild photos to calm rants, you’ve been everything — my Instagram manager, my chaos buddy, and my forever person 😂💼💝<br/>
     And even when we go days without talking, we always pick up right where we left off — like nothing ever changed 🫂💗<br/>
     Love you always, maga 💖
   </p>
 
-  <!-- Duo Pics -->
-  <div class="gallery">
-    <img src="duo1.jpg" alt="Us together" />
-    <img src="duo2.jpg" alt="Us smiling" />
-    <img src="duo3.jpg" alt="Us laughing" />
-    <img src="duo4.jpg" alt="Candid shot" />
-    <img src="duo5.jpg" alt="Hanging out" />
-    <img src="duo6.jpg" alt="Trip moment" />
-    <img src="duo7.jpg" alt="Goofy selfie" />
-    <img src="duo8.jpg" alt="Cute pose" />
+  <!-- Duo Pics Slider -->
+  <div class="slider">
+    <img src="duo1.jpg" alt="Us 1" />
+    <img src="duo2.jpg" alt="Us 2" />
+    <img src="duo3.jpg" alt="Us 3" />
+    <img src="duo4.jpg" alt="Us 4" />
+    <img src="duo5.jpg" alt="Us 5" />
+    <img src="duo6.jpg" alt="Us 6" />
+    <img src="duo7.jpg" alt="Us 7" />
+    <img src="duo8.jpg" alt="Us 8" />
   </div>
 
   <!-- Music -->
   <audio id="bg-music" autoplay loop>
-    <source src="bg-music.mp3" type="audio/mpeg" />
-    Your browser does not support the audio tag.
+    <source src="bdaymusic.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
 
-  <!-- Footer -->
   <div class="footer">
     Made with 💖 by Harshitha
   </div>
 
-  <!-- Confetti Script -->
+  <!-- Confetti (Hearts) Script -->
   <script>
-    // Try to autoplay on click (for mobile)
+    // For autoplay on mobile
     window.addEventListener('click', () => {
       const music = document.getElementById('bg-music');
       if (music.paused) music.play();
     });
 
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
     let hearts = [];
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
-    window.addEventListener('resize', resizeCanvas);
+
+    window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
     function createHeart() {
@@ -174,15 +166,15 @@
     }
 
     let frame = 0;
-    const maxFrames = 300; // ~5 seconds of confetti
+    const maxFrames = 250;
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      hearts.forEach((heart, index) => {
+      hearts.forEach((heart, i) => {
         heart.y += heart.speed;
         heart.rotation += 1;
         drawHeart(heart.x, heart.y, heart.size, heart.rotation);
-        if (heart.y > canvas.height) hearts.splice(index, 1);
+        if (heart.y > canvas.height) hearts.splice(i, 1);
       });
 
       if (frame < maxFrames) {
@@ -195,6 +187,5 @@
 
     animate();
   </script>
-
 </body>
 </html>

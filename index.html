@@ -33,32 +33,33 @@
     }
 
     .slider-container {
-      overflow-x: scroll;
+      overflow-x: auto;
       display: flex;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       padding: 30px 0;
-      gap: 10px;
+      gap: 20px;
+      padding-left: 10px;
     }
 
     .slide {
-      flex: 0 0 85%;
+      flex: 0 0 80%;
       scroll-snap-align: center;
-      margin-left: 15px;
-      margin-right: 15px;
       background: #fff0f5;
       border: 6px solid #ffb6c1;
       border-radius: 25px;
       box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
       padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .slide img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 15px;
+      max-width: 100%;
+      max-height: 70vh;
       object-fit: contain;
+      border-radius: 15px;
     }
 
     .footer {
@@ -83,7 +84,7 @@
         padding: 0 10px;
       }
       .slide {
-        flex: 0 0 90%;
+        flex: 0 0 85%;
       }
     }
   </style>
@@ -128,7 +129,7 @@
     Made with 💖 by Harshitha
   </div>
 
-  <!-- Autoplay Music -->
+  <!-- Music Play Script -->
   <script>
     const music = document.getElementById('bg-music');
     music.src = 'bg-music.mp3';
